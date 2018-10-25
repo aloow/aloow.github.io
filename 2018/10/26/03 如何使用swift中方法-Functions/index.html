@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Swift中的function很灵活强大，形参中提供默认值，可以声明一个变量为function类型，可以作为另外一个function的传人参数或者返回参数。  声明和调用方法 (Defining and Calling Functions)1234func greet(person: String) -&amp;gt; String &amp;#123;    let greeting = &quot;Hello, &quot; +">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何使用swift中方法(Functions)">
+<meta property="og:url" content="http://shaoqing.com/2018/10/26/03 如何使用swift中方法-Functions/index.html">
+<meta property="og:site_name" content="Shao Qing&#39;s Bolg">
+<meta property="og:description" content="Swift中的function很灵活强大，形参中提供默认值，可以声明一个变量为function类型，可以作为另外一个function的传人参数或者返回参数。  声明和调用方法 (Defining and Calling Functions)1234func greet(person: String) -&amp;gt; String &amp;#123;    let greeting = &quot;Hello, &quot; +">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-25T23:16:43.528Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何使用swift中方法(Functions)">
+<meta name="twitter:description" content="Swift中的function很灵活强大，形参中提供默认值，可以声明一个变量为function类型，可以作为另外一个function的传人参数或者返回参数。  声明和调用方法 (Defining and Calling Functions)1234func greet(person: String) -&amp;gt; String &amp;#123;    let greeting = &quot;Hello, &quot; +">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shaoqing.com/2018/10/26/03 如何使用swift中方法-Functions/">
+
+
+
+
+
+  <title>如何使用swift中方法(Functions) | Shao Qing's Bolg</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shao Qing's Bolg</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">认真生活，热爱生活。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shaoqing.com/2018/10/26/03 如何使用swift中方法-Functions/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="绍清">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shao Qing's Bolg">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何使用swift中方法(Functions)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-26T06:37:12+08:00">
+                2018-10-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/26/03 如何使用swift中方法-Functions/" class="leancloud_visitors" data-flag-title="如何使用swift中方法(Functions)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,112
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>Swift</code>中的<code>function</code>很灵活强大，<code>形参</code>中提供默认值，可以声明一个变量为<code>function</code>类型，可以作为另外一个<code>function</code>的<code>传人参数</code>或者<code>返回参数</code>。</p>
+<hr>
+<h2 id="声明和调用方法-Defining-and-Calling-Functions"><a href="#声明和调用方法-Defining-and-Calling-Functions" class="headerlink" title="声明和调用方法 (Defining and Calling Functions)"></a>声明和调用方法 (Defining and Calling Functions)</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(person: String)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> greeting = <span class="string">"Hello, "</span> + person + <span class="string">"!"</span></span><br><span class="line">    <span class="keyword">return</span> greeting</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用<code>func</code>来声明方法，<code>greet</code>是方法名，<code>person</code>是参数名（也是标签名），<code>String</code>是参数类型，-&gt;来指定返回值类型。</p>
+<h2 id="方法的参数和返回值-Function-Parameters-and-Return-Values"><a href="#方法的参数和返回值-Function-Parameters-and-Return-Values" class="headerlink" title="方法的参数和返回值 (Function Parameters and Return Values)"></a>方法的参数和返回值 (Function Parameters and Return Values)</h2><h3 id="无参数的方法-Functions-Without-Prameters"><a href="#无参数的方法-Functions-Without-Prameters" class="headerlink" title="无参数的方法 (Functions Without Prameters)"></a>无参数的方法 (Functions Without Prameters)</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sayHelloWorld</span><span class="params">()</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"hello, world"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(sayHelloWorld())</span><br><span class="line"><span class="comment">// Prints "hello, world"</span></span><br></pre></td></tr></table></figure>
+<h3 id="有多个参数的方法-Function-With-Multiple-Parameters"><a href="#有多个参数的方法-Function-With-Multiple-Parameters" class="headerlink" title="有多个参数的方法 (Function With Multiple Parameters)"></a>有多个参数的方法 (Function With Multiple Parameters)</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(person: String, alreadyGreeted: Bool)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> alreadyGreeted &#123;</span><br><span class="line">        <span class="keyword">return</span> greetAgain(person: person)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> greet(person: person)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(greet(person: <span class="string">"Tim"</span>, alreadyGreeted: <span class="literal">true</span>))</span><br><span class="line"><span class="comment">// Prints "Hello again, Tim!"</span></span><br></pre></td></tr></table></figure>
+<h3 id="无返回值的方法-Functions-Without-Return-Values"><a href="#无返回值的方法-Functions-Without-Return-Values" class="headerlink" title="无返回值的方法 (Functions Without Return Values)"></a>无返回值的方法 (Functions Without Return Values)</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(person: String)</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Hello, <span class="subst">\(person)</span>!"</span>)</span><br><span class="line">&#125;</span><br><span class="line">greet(person: <span class="string">"Dave"</span>)</span><br><span class="line"><span class="comment">// Prints "Hello, Dave!"</span></span><br></pre></td></tr></table></figure>
+<p>因为参数没有返回值，所以方法的定义不包含-&gt;和返回类型。</p>
+<blockquote>
+<p>注意：严格地说，这个方法还是有一个返回值，即使没有定义返回类型。没有定义返回值的方法返回一个<code>Void</code>类型的值，这个返回值是一个空<code>多元组()</code>。</p>
+</blockquote>
+<p>方法被调用之后，返回值可以忽略：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printAndCount</span><span class="params">(string: String)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(string)</span><br><span class="line">    <span class="keyword">return</span> string.characters.<span class="built_in">count</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printWithoutCounting</span><span class="params">(string: String)</span></span> &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="number">_</span> = printAndCount(string: string)</span><br><span class="line">&#125;</span><br><span class="line">printAndCount(string: <span class="string">"hello, world"</span>)</span><br><span class="line"><span class="comment">// prints "hello, world" and returns a value of 12</span></span><br><span class="line">printWithoutCounting(string: <span class="string">"hello, world"</span>)</span><br><span class="line"><span class="comment">// prints "hello, world" but does not return a value</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="返回多个值的方法-Functions-with-Multiple-Return-Values"><a href="#返回多个值的方法-Functions-with-Multiple-Return-Values" class="headerlink" title="返回多个值的方法 (Functions with Multiple Return Values)"></a>返回多个值的方法 (Functions with Multiple Return Values)</h3><p>使用多元组作为返回值，来返回多个值：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">fun mixMax(array: [<span class="type">Int</span>]) -&gt; (<span class="built_in">min</span>: <span class="type">Int</span>, <span class="built_in">max</span>: <span class="type">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> currentMix = array[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">var</span> currentMax = array[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> array[<span class="number">1</span>..&lt;arry.<span class="built_in">count</span>] &#123;</span><br><span class="line">        <span class="keyword">if</span> value &lt; currentMix &#123;</span><br><span class="line">            currrentMix = value</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> value &gt; currentMax &#123;</span><br><span class="line">            currentMax = value</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (currentMix, currentMax)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> bounds = mixMax(array: [<span class="number">8</span>, -<span class="number">6</span>, <span class="number">2</span>, <span class="number">109</span>, <span class="number">3</span>, <span class="number">71</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"min is (bounds.min), and max is <span class="subst">\(bounds.<span class="built_in">max</span>)</span>"</span>)</span><br><span class="line"><span class="comment">// Prints "min is -6 and max is 109"</span></span><br></pre></td></tr></table></figure></p>
+<p>再返回多元组的时候，不用再给元素命名，因为方法的返回值已经命名。</p>
+<h3 id="可选多元组返回类型-Optional-Tuple-Return-Types"><a href="#可选多元组返回类型-Optional-Tuple-Return-Types" class="headerlink" title="可选多元组返回类型 (Optional Tuple Return Types)"></a>可选多元组返回类型 (Optional Tuple Return Types)</h3><p>如果方法返回的多元组有可能没有值，我们在定义方法返回值时可以使用可选类型，例如<code>(Int, Int)?</code>和<code>(String, Int, Bool)?</code>。</p>
+<blockquote>
+<p>注意：<code>(Int, Int)?</code>多元组可选类型不同于包含可选类型元素的多元组<code>(Int?, Int?)</code>。<code>(Int, Int)?</code>多元组是可选类型，而<code>(Int?, Int?)</code>其中的元素才是可选了类型。</p>
+</blockquote>
+<h2 id="方法参数标签和参数名-Function-Argument-Labels-and-Parameter-Names"><a href="#方法参数标签和参数名-Function-Argument-Labels-and-Parameter-Names" class="headerlink" title="方法参数标签和参数名 (Function Argument Labels and Parameter Names)"></a>方法参数标签和参数名 (Function Argument Labels and Parameter Names)</h2><p>每个方法的参数都有一个参数标签和参数名。参数标签使你在调用方法的时候使用，参数名实在方法实现里调用。默认情况下，参数表前和参数名是相同的。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">someFunction</span><span class="params">(firstParameterName: Int, secondParameterName: Int)</span></span> &#123;</span><br><span class="line">    <span class="comment">// In the function body, firstParameterName and secondParameterName</span></span><br><span class="line">    <span class="comment">// refer to the argument values for the first and second parameters.</span></span><br><span class="line">&#125;</span><br><span class="line">someFunction(firstParameterName: <span class="number">1</span>, secondParameterName: <span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<p>所有的参数名必须是唯一的，参数标签有可能相同。但是为了提高代码的可读性，参数标签唯一可以提高代码的可读性。</p>
+<h3 id="指定参数标签-Specifying-Argument-Labels"><a href="#指定参数标签-Specifying-Argument-Labels" class="headerlink" title="指定参数标签 (Specifying Argument Labels)"></a>指定参数标签 (Specifying Argument Labels)</h3><p>把参数标签写在参数名前面：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">someFunction</span><span class="params">(argumentLabel parameterName: Int)</span></span> &#123;</span><br><span class="line">    <span class="comment">// In the function body, parameterName refers to the argument value</span></span><br><span class="line">    <span class="comment">// for that parameter.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(person: String, from hometown: String)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Hello <span class="subst">\(person)</span>!  Glad you could visit from <span class="subst">\(hometown)</span>."</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(greet(person: <span class="string">"Bill"</span>, from: <span class="string">"Cupertino"</span>))</span><br><span class="line"><span class="comment">// Prints "Hello Bill!  Glad you could visit from Cupertino."</span></span><br></pre></td></tr></table></figure></p>
+<p>使用参数标签，调用方法就像调用一个句子一样，非常清晰，可读性非常高。</p>
+<h3 id="删除参数标签-Omitting-Argument-Labels"><a href="#删除参数标签-Omitting-Argument-Labels" class="headerlink" title="删除参数标签 (Omitting Argument Labels)"></a>删除参数标签 (Omitting Argument Labels)</h3><p>如果我们不需要参数标签，使用_来代替参数标签：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">someFunction</span><span class="params">(<span class="number">_</span> firstParameterName: Int, secondParameterName: Int)</span></span> &#123;</span><br><span class="line">    <span class="comment">// In the function body, firstParameterName and secondParameterName</span></span><br><span class="line">    <span class="comment">// refer to the argument values for the first and second parameters.</span></span><br><span class="line">&#125;</span><br><span class="line">someFunction(<span class="number">1</span>, secondParameterName: <span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<p>如果一个参数有标签，在调用方法时必须写标签。</p>
+<h3 id="参数默认值-Default-Parameter-Values"><a href="#参数默认值-Default-Parameter-Values" class="headerlink" title="参数默认值 (Default Parameter Values)"></a>参数默认值 (Default Parameter Values)</h3><p>在声明方法时，可以给参数一个默认值：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">someFunction</span><span class="params">(parameterWithoutDefault: Int, parameterWithDefault: Int = <span class="number">12</span>)</span></span> &#123;</span><br><span class="line">    <span class="comment">// If you omit the second argument when calling this function, then</span></span><br><span class="line">    <span class="comment">// the value of parameterWithDefault is 12 inside the function body.</span></span><br><span class="line">&#125;</span><br><span class="line">someFunction(parameterWithoutDefault: <span class="number">3</span>, parameterWithDefault: <span class="number">6</span>) <span class="comment">// parameterWithDefault is 6</span></span><br><span class="line">someFunction(parameterWithoutDefault: <span class="number">4</span>) <span class="comment">// parameterWithDefault is 12</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="可变参数-Variadic-Parameters"><a href="#可变参数-Variadic-Parameters" class="headerlink" title="可变参数 (Variadic Parameters)"></a>可变参数 (Variadic Parameters)</h3><p>一个可变参数可以接受0个或多个指定类型的值。使用可变参数来指定这个参数在方法调用时可以被传入多个值，<br>传入方法的多个值在方法体中会作为一个数组。：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">arithmeticMean</span><span class="params">(<span class="number">_</span> numbers: Double...)</span></span> -&gt; <span class="type">Double</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> total: <span class="type">Double</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> numbers &#123;</span><br><span class="line">        total += number</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> total / <span class="type">Double</span>(numbers.<span class="built_in">count</span>)</span><br><span class="line">&#125;</span><br><span class="line">arithmeticMean(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"><span class="comment">// returns 3.0, which is the arithmetic mean of these five numbers</span></span><br><span class="line">arithmeticMean(<span class="number">3</span>, <span class="number">8.25</span>, <span class="number">18.75</span>)</span><br><span class="line"><span class="comment">// returns 10.0, which is the arithmetic mean of these three numbers</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意：一个方法最多只能有一个可变参数。</p>
+</blockquote>
+<h2 id="In-Out-参数-In-Ont-Parameters"><a href="#In-Out-参数-In-Ont-Parameters" class="headerlink" title="In-Out 参数 (In-Ont Parameters)"></a>In-Out 参数 (In-Ont Parameters)</h2><p>方法的参数默认情况下是属于常量，在方法中是不能改为参数值的。如果我们想在一个方法中改变参数的值，并且在方法执行完之后保持改变，应该把参数定义为<code>in-out</code>参数。</p>
+<p>使用<code>inout</code>关键字来定义一个in-out参数，把<code>inout</code>放在参数类型的前面。对于<code>in-out</code>参数，在方法调用时，我们只能传入变量，不能传入常量或者字面值，因为常量和字面值是不能修改的。把变量传给一个参数时，要在变量名前面写一个<code>&amp;</code>，来提示它是可以变改变的。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">swapTwoInts</span><span class="params">(<span class="number">_</span> a: <span class="keyword">inout</span> Int, <span class="number">_</span> b: <span class="keyword">inout</span> Int)</span></span> &#123;</span><br><span class="line">    <span class="keyword">let</span> tempA = a</span><br><span class="line">    a = b</span><br><span class="line">    b = tempA</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> someInt = <span class="number">3</span></span><br><span class="line"><span class="keyword">var</span> anotherInt = <span class="number">107</span></span><br><span class="line">swapTwoInts(&amp;someInt, &amp;anotherInt)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"someInt is now <span class="subst">\(someInt)</span>, and anotherInt is now <span class="subst">\(anotherInt)</span>"</span>)</span><br><span class="line"><span class="comment">// Prints "someInt is now 107, and anotherInt is now 3"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="方法类型-Function-Types"><a href="#方法类型-Function-Types" class="headerlink" title="方法类型 (Function Types)"></a>方法类型 (Function Types)</h2><p>每个方法都有一个特定的方法类型，并且由参数类型和返回值类型组成。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">addTwoInts</span><span class="params">(<span class="number">_</span> a: Int, <span class="number">_</span> b: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">multiplyTwoInts</span><span class="params">(<span class="number">_</span> a: Int, <span class="number">_</span> b: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a * b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这两个方法的类型都是<code>(Int, Int) -&gt; Int</code>，可以这么理解：这个方法有两个<code>Int</code>类型的参数，返回一个Int类型的值。</p>
+<p>下面是一个没有参数的方法：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printHelloWorld</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"hello, world"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个方法的类型是<code>() -&gt; Void</code>。</p>
+<h3 id="使用方法类型-Using-Function-Types"><a href="#使用方法类型-Using-Function-Types" class="headerlink" title="使用方法类型 (Using Function Types)"></a>使用方法类型 (Using Function Types)</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mathFunction: (<span class="type">Int</span>, <span class="type">Int</span>) -&gt; <span class="type">Int</span> = addTwoInts</span><br></pre></td></tr></table></figure>
+<p>可以理解为：定义一个<code>mathFunction</code>变量，这个变量的类型是有两个<code>Int</code>类型参数并返回值为Int类型的方法，然后把这个变量指向<code>addTwoInts</code>。</p>
+<h3 id="使用mathFunction方法："><a href="#使用mathFunction方法：" class="headerlink" title="使用mathFunction方法："></a>使用mathFunction方法：</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"Result: <span class="subst">\(mathFunction(<span class="number">2</span>, <span class="number">3</span>)</span>)"</span>)</span><br><span class="line"><span class="comment">// Prints "Result: 5"</span></span><br></pre></td></tr></table></figure>
+<p>类型相同的不同方法可以赋值给同一个变量，例如：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mathFunction = multiplyTwoInts</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Result: <span class="subst">\(mathFunction(<span class="number">2</span>, <span class="number">3</span>)</span>)"</span>)</span><br><span class="line"><span class="comment">// Prints "Result: 6"</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="方法类型作为参数类型-Function-Types-as-Parameter-Types"><a href="#方法类型作为参数类型-Function-Types-as-Parameter-Types" class="headerlink" title="方法类型作为参数类型 (Function Types as Parameter Types)"></a>方法类型作为参数类型 (Function Types as Parameter Types)</h3><p>我们可以使用方法类型作为参数类型。例如：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printMathResult</span><span class="params">(<span class="number">_</span> mathFunction: <span class="params">(Int, Int)</span></span></span> -&gt; <span class="type">Int</span>, <span class="number">_</span> a: <span class="type">Int</span>, <span class="number">_</span> b: <span class="type">Int</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Result: <span class="subst">\(mathFunction(a, b)</span>)"</span>)</span><br><span class="line">&#125;</span><br><span class="line">printMathResult(addTwoInts, <span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line"><span class="comment">// Prints "Result: 8"</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="方法类型作为返回值类型-Function-Types-as-Return-Types"><a href="#方法类型作为返回值类型-Function-Types-as-Return-Types" class="headerlink" title="方法类型作为返回值类型 (Function Types as Return Types)"></a>方法类型作为返回值类型 (Function Types as Return Types)</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">stepForward</span><span class="params">(<span class="number">_</span> input: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> input + <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">stepBackward</span><span class="params">(<span class="number">_</span> input: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> input - <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">chooseStepFunction</span><span class="params">(backward: Bool)</span></span> -&gt; (<span class="type">Int</span>) -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    backward ? stepBackward : stepForward</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用<code>chooseStepFunction(backward:)</code>方法来选择前进的方向：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> currentValue = <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> moveNearerToZero = chooseStepFunction(backward: currentValue &gt; <span class="number">0</span>)</span><br><span class="line"><span class="comment">// moveNearerToZero now refers to the stepBackward() function</span></span><br></pre></td></tr></table></figure></p>
+<p><code>moveNearerToZero</code>已经引用了一个正确的方法，可以让一个值越来越接近0：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"Counting to zero:"</span>)</span><br><span class="line"><span class="keyword">while</span> currentValue != <span class="number">0</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(currentValue)</span>..."</span>)</span><br><span class="line">    currentValue = moveNearToZero(currentValue)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"zero!"</span>)</span><br><span class="line"><span class="comment">// 3...</span></span><br><span class="line"><span class="comment">// 2...</span></span><br><span class="line"><span class="comment">// 1...</span></span><br><span class="line"><span class="comment">// zero!</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="嵌套方法-Nested-Functions"><a href="#嵌套方法-Nested-Functions" class="headerlink" title="嵌套方法 (Nested Functions)"></a>嵌套方法 (Nested Functions)</h2><p>目前所接触到的所有方法都是在全局区域定义的全局方法。其实我们还可以在一个方法内部定义其他方法。嵌套的方法默认情况下，外面是访问不到的，只有包含这个嵌套方法的方法内部才可访问。但是包含嵌套方法的方法可以把其嵌套方法作为返回值供外面使用，所以上面的<code>chooseStepFunction(backward:)</code>可以改写为：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">chooseStepFunction</span><span class="params">(backward: Bool)</span></span> -&gt; (<span class="type">Int</span>) -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">stepForward</span><span class="params">(input: Int)</span></span> -&gt; <span class="type">Int</span> &#123; <span class="keyword">return</span> input +<span class="number">1</span> &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">stepBackward</span><span class="params">(input: Int)</span></span> -&gt; <span class="type">Int</span> &#123; <span class="keyword">return</span> input - <span class="number">1</span> &#125;</span><br><span class="line">    <span class="keyword">return</span> backward ? stepBackward : stepForward</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> currentValue = -<span class="number">4</span></span><br><span class="line"><span class="keyword">let</span> moveNearerToZero = chooseStepFunction(backward: currentValue &gt; <span class="number">0</span>)</span><br><span class="line"><span class="comment">// moveNearerToZero now refers to the nested stepForward() function</span></span><br><span class="line"><span class="keyword">while</span> currentValue != <span class="number">0</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(currentValue)</span>... "</span>)</span><br><span class="line">    currentValue = moveNearerToZero(currentValue)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"zero!"</span>)</span><br><span class="line"><span class="comment">// -4...</span></span><br><span class="line"><span class="comment">// -3...</span></span><br><span class="line"><span class="comment">// -2...</span></span><br><span class="line"><span class="comment">// -1...</span></span><br><span class="line"><span class="comment">// zero!</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
+        </div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/25/02 如何使用swift中集合类型数组-Array-、集合-Set-、字典-Dictionary/" rel="next" title="如何使用swift中集合类型数组(Array)、集合(Set)、字典(Dictionary)">
+                <i class="fa fa-chevron-left"></i> 如何使用swift中集合类型数组(Array)、集合(Set)、字典(Dictionary)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="绍清">
+            
+              <p class="site-author-name" itemprop="name">绍清</p>
+              <p class="site-description motion-element" itemprop="description">苟有恒,何必三更眠五更起,最无益,莫过一日曝十日寒</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:897034809@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/3154019080" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-globe"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/aloow" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明和调用方法-Defining-and-Calling-Functions"><span class="nav-number">1.</span> <span class="nav-text">声明和调用方法 (Defining and Calling Functions)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法的参数和返回值-Function-Parameters-and-Return-Values"><span class="nav-number">2.</span> <span class="nav-text">方法的参数和返回值 (Function Parameters and Return Values)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无参数的方法-Functions-Without-Prameters"><span class="nav-number">2.1.</span> <span class="nav-text">无参数的方法 (Functions Without Prameters)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有多个参数的方法-Function-With-Multiple-Parameters"><span class="nav-number">2.2.</span> <span class="nav-text">有多个参数的方法 (Function With Multiple Parameters)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无返回值的方法-Functions-Without-Return-Values"><span class="nav-number">2.3.</span> <span class="nav-text">无返回值的方法 (Functions Without Return Values)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回多个值的方法-Functions-with-Multiple-Return-Values"><span class="nav-number">2.4.</span> <span class="nav-text">返回多个值的方法 (Functions with Multiple Return Values)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可选多元组返回类型-Optional-Tuple-Return-Types"><span class="nav-number">2.5.</span> <span class="nav-text">可选多元组返回类型 (Optional Tuple Return Types)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法参数标签和参数名-Function-Argument-Labels-and-Parameter-Names"><span class="nav-number">3.</span> <span class="nav-text">方法参数标签和参数名 (Function Argument Labels and Parameter Names)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指定参数标签-Specifying-Argument-Labels"><span class="nav-number">3.1.</span> <span class="nav-text">指定参数标签 (Specifying Argument Labels)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除参数标签-Omitting-Argument-Labels"><span class="nav-number">3.2.</span> <span class="nav-text">删除参数标签 (Omitting Argument Labels)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数默认值-Default-Parameter-Values"><span class="nav-number">3.3.</span> <span class="nav-text">参数默认值 (Default Parameter Values)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可变参数-Variadic-Parameters"><span class="nav-number">3.4.</span> <span class="nav-text">可变参数 (Variadic Parameters)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#In-Out-参数-In-Ont-Parameters"><span class="nav-number">4.</span> <span class="nav-text">In-Out 参数 (In-Ont Parameters)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法类型-Function-Types"><span class="nav-number">5.</span> <span class="nav-text">方法类型 (Function Types)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方法类型-Using-Function-Types"><span class="nav-number">5.1.</span> <span class="nav-text">使用方法类型 (Using Function Types)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用mathFunction方法："><span class="nav-number">5.2.</span> <span class="nav-text">使用mathFunction方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法类型作为参数类型-Function-Types-as-Parameter-Types"><span class="nav-number">5.3.</span> <span class="nav-text">方法类型作为参数类型 (Function Types as Parameter Types)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法类型作为返回值类型-Function-Types-as-Return-Types"><span class="nav-number">5.4.</span> <span class="nav-text">方法类型作为返回值类型 (Function Types as Return Types)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套方法-Nested-Functions"><span class="nav-number">6.</span> <span class="nav-text">嵌套方法 (Nested Functions)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">绍清</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共10.9k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Umqe2M2fk7veTe87SHVGBoBK-gzGzoHsz", "lnkdcTcffrfDRCLUrvMyJskq");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
