@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="For-in循环 (For-in Loop) index in 1...5 &amp;#123;1234567    print(&amp;quot;\(index) times 5 is \(index * 5)&amp;quot;)&amp;#125;// 1 times 5 is 5// 2 times 5 is 10// 3 times 5 is 15// 4 times 5 is 20// 5 times 5 is 2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shao Qing&#39;s Bolg">
+<meta property="og:url" content="http://shaoqing.com/2017/02/11/04 如何使用swift中的控制流/index.html">
+<meta property="og:site_name" content="Shao Qing&#39;s Bolg">
+<meta property="og:description" content="For-in循环 (For-in Loop) index in 1...5 &amp;#123;1234567    print(&amp;quot;\(index) times 5 is \(index * 5)&amp;quot;)&amp;#125;// 1 times 5 is 5// 2 times 5 is 10// 3 times 5 is 15// 4 times 5 is 20// 5 times 5 is 2">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2057254-ca44740de1e65752.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-12-10T13:45:00.453Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shao Qing&#39;s Bolg">
+<meta name="twitter:description" content="For-in循环 (For-in Loop) index in 1...5 &amp;#123;1234567    print(&amp;quot;\(index) times 5 is \(index * 5)&amp;quot;)&amp;#125;// 1 times 5 is 5// 2 times 5 is 10// 3 times 5 is 15// 4 times 5 is 20// 5 times 5 is 2">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2057254-ca44740de1e65752.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shaoqing.com/2017/02/11/04 如何使用swift中的控制流/">
+
+
+
+
+
+  <title> | Shao Qing's Bolg</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shao Qing's Bolg</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">认真生活，热爱生活。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shaoqing.com/2017/02/11/04 如何使用swift中的控制流/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="绍清">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shao Qing's Bolg">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-11T11:20:10+08:00">
+                2017-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/02/11/04 如何使用swift中的控制流/" class="leancloud_visitors" data-flag-title="">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,658
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="For-in循环-For-in-Loop"><a href="#For-in循环-For-in-Loop" class="headerlink" title="For-in循环 (For-in Loop)"></a>For-in循环 (For-in Loop)</h4> <figure class="highlight plain"><figcaption><span>index in 1...5 &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    print(&quot;\(index) times 5 is \(index * 5)&quot;)</span><br><span class="line">&#125;</span><br><span class="line">// 1 times 5 is 5</span><br><span class="line">// 2 times 5 is 10</span><br><span class="line">// 3 times 5 is 15</span><br><span class="line">// 4 times 5 is 20</span><br><span class="line">// 5 times 5 is 25</span><br></pre></td></tr></table></figure>
+<p>如果不需要序列的每一个值，使用<code>_</code>代替变量的名字：</p>
+<pre><code>let base = 3
+let power = 10
+var answer = 1
+for _ in 1...power {
+    answer *= base
+}
+print(&quot;\(base) to the power of \(power) is \(answer)&quot;)
+// Prints &quot;3 to the power of 10 is 59049&quot;
+</code></pre><p>使用<code>for-in</code>遍历数组的所有元素：</p>
+<pre><code>let names = [&quot;Anna&quot;, &quot;Alex&quot;, &quot;Brian&quot;, &quot;Jack&quot;]
+for name in names {
+    print(&quot;Hello, \(name)!&quot;)
+}
+// Hello, Anna!
+// Hello, Alex!
+// Hello, Brian!
+// Hello, Jack!
+</code></pre><p>使用<code>for-in</code>遍历字典的所有键值对：</p>
+<pre><code>let numberOfLegs = [&quot;spider&quot;: 8, &quot;ant&quot;: 6, &quot;cat&quot;: 4]
+for (animal, legCount) in numberOfLegs {
+    print(&quot;\(animalName)s have \(legCount) legs&quot;)
+}
+// ants have 6 legs
+// spiders have 8 legs
+// cats have 4 legs
+</code></pre><h4 id="While循环-While-Loops"><a href="#While循环-While-Loops" class="headerlink" title="While循环 (While Loops)"></a>While循环 (While Loops)</h4><p>Swift提供了两种While循环：</p>
+<ul>
+<li><code>while</code>：执行循环体之前检查循环条件</li>
+<li><code>repeat-while</code>：执行完循环体之后，再检查循环条件</li>
+</ul>
+<h5 id="While"><a href="#While" class="headerlink" title="While"></a>While</h5><p><code>while</code>循环的通用形式：</p>
+<pre><code>while condiction {
+    statements
+}
+</code></pre><h5 id="Repeat-While"><a href="#Repeat-While" class="headerlink" title="Repeat-While"></a>Repeat-While</h5><p><code>repeat-while</code>循环的通用形式：</p>
+<pre><code>repeat {
+    statements
+} while condition
+</code></pre><h4 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h4><h5 id="If"><a href="#If" class="headerlink" title="If"></a>If</h5><pre><code>temperatureInFahrenheit = 40
+if temperatureInFahrenheit &lt;= 32 {
+    print(&quot;It&apos;s very cold. Consider wearing a scarf.&quot;)
+} else {
+    print(&quot;It&apos;s not that cold. Wear a t-shirt.&quot;)
+}
+// Prints &quot;It&apos;s not that cold. Wear a t-shirt.&quot;
+</code></pre><p>将多个<code>if</code>语句串联在一起：</p>
+<pre><code>temperatureInFahrenheit = 90
+if temperatureInFahrenheit &lt;= 32 {
+    print(&quot;It&apos;s very cold. Consider wearing a scarf.&quot;)
+} else if temperatureInFahrenheit &gt;= 86 {
+    print(&quot;It&apos;s really warm. Don&apos;t forget to wear sunscreen.&quot;)
+} else {
+    print(&quot;It&apos;s not that cold. Wear a t-shirt.&quot;)
+}
+// Prints &quot;It&apos;s really warm. Don&apos;t forget to wear sunscreen.&quot;
+</code></pre><h5 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h5><pre><code>let someCharacter: Character = &quot;z&quot;
+switch someCharacter {
+case &quot;a&quot;:
+    print(&quot;The first letter of the alphabet&quot;)
+case &quot;z&quot;:
+    print(&quot;The last letter of the alphabet&quot;)
+default:
+    print(&quot;Some other character&quot;)
+}
+// Prints &quot;The last letter of the alphabet&quot;
+</code></pre><p>在Swift中，下面的写法是错误的：</p>
+<pre><code>let anotherCharacter: Character = &quot;a&quot;
+switch anotherCharacter {
+case &quot;a&quot;: // Invalid, the case has an empty body
+case &quot;A&quot;:
+    print(&quot;The letter A&quot;)
+default:
+    print(&quot;Not the letter A&quot;)
+}
+// This will report a compile-time error.
+</code></pre><p>因为不同于C语言中的<code>switch</code>，这个<code>Switch</code>语句不能同时匹配<code>a</code>和<code>A</code>。如果想使用一个case同时满足<code>a</code>和<code>A</code>，需要写成下面这种形式：</p>
+<pre><code>let anotherCharacter: Character = &quot;a&quot;
+switch anotherCharacter {
+case &quot;a&quot;, &quot;A&quot;:
+    print(&quot;The letter A&quot;)
+default:
+    print(&quot;Not the letter A&quot;)
+}
+// Prints &quot;The letter A&quot;
+</code></pre><h5 id="间隔匹配-Interval-Matching"><a href="#间隔匹配-Interval-Matching" class="headerlink" title="间隔匹配 (Interval Matching)"></a>间隔匹配 (Interval Matching)</h5><pre><code>let approximateCount = 62
+let countedThings = &quot;moons orbiting Saturn&quot;
+var naturalCount: String
+switch approximateCount {
+case 0: naturalCount = &quot;no&quot;
+case 1..&lt;5: naturalCount = &quot;a few&quot;
+case 5..&lt;12: naturalCount = &quot;several&quot;
+case 12..&lt;100: naturalCount = &quot;dozens of&quot;
+case 100..&lt;1000: naturalCount = &quot;hundreds of&quot;
+default: naturalCount = &quot;many&quot;
+}
+print(&quot;There are \(naturalCount) \(countedThings).&quot;)
+// Prints &quot;There are dozens of moons orbiting Saturn.&quot;
+</code></pre><h4 id="多元组-Tuples"><a href="#多元组-Tuples" class="headerlink" title="多元组 (Tuples)"></a>多元组 (Tuples)</h4><pre><code>let somePoint = (1, 1)
+switch somePoint {
+case (0, 0):
+    print(&quot;(0, 0) is at the origin&quot;)
+case (_, 0):
+    print(&quot;(\(somePoint.0), 0) is on the x-axis&quot;)
+case (0, _):
+    print(&quot;(0, \(somePoint.1)) is on the y-axis&quot;)
+case (-2...2, -2...2):
+    print(&quot;(\(somePoint.0), \(somePoint.1)) is inside the box&quot;)
+default:
+    print(&quot;(\(somePoint.0), \(somePoint.1)) is outside of the box&quot;)
+}
+// Prints &quot;(1, 1) is inside the box&quot;
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/2057254-ca44740de1e65752.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="coordinate"></p>
+<p>实际上<code>(0, 0)</code>可以满足这四个情况，然而只有第一个满足<code>(0, 0)</code>的情况才会被使用。其他后面的会被忽略。</p>
+<h5 id="值绑定-Value-Bindings"><a href="#值绑定-Value-Bindings" class="headerlink" title="值绑定 (Value Bindings)"></a>值绑定 (Value Bindings)</h5><pre><code>let anotherPoint = (2, 0)
+switch anotherPoint {
+case (let x, 0):
+    print(&quot;on the x-axis with an x value of \(x)&quot;)
+case (0, let y):
+    print(&quot;on the y-axis with a y value of \(y)&quot;)
+case let (x, y):
+    print(&quot;somewhere else at (\(x), \(y))&quot;)
+}
+// Prints &quot;on the x-axis with an x value of 2&quot;
+</code></pre><h5 id="Where"><a href="#Where" class="headerlink" title="Where"></a>Where</h5><p>在<code>switch</code>还可以使用<code>where</code>分句来添加额外的条件。</p>
+<pre><code>let yetAnotherPoint = (1, -1)
+switch yetAnotherPoint {
+case let (x, y) where x == y:
+    print(&quot;(\(x), \(y)) is on the line x == y&quot;)
+case let (x, y) where x == -y:
+    print(&quot;(\(x), \(y)) is on the line x == -y&quot;)
+case let (x, y):
+    print(&quot;(\(x), \(y)) is just some arbitrary point&quot;)
+}
+// Prints &quot;(1, -1) is on the line x == -y&quot;
+</code></pre><h5 id="复合情况-Compound-Cases"><a href="#复合情况-Compound-Cases" class="headerlink" title="复合情况 (Compound Cases)"></a>复合情况 (Compound Cases)</h5><pre><code>let someCharacter: Character = &quot;e&quot;
+switch someCharacter {
+case &quot;a&quot;, &quot;e&quot;, &quot;i&quot;, &quot;o&quot;, &quot;u&quot;:
+    print(&quot;\(someCharacter) is a vowel&quot;)
+case &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;j&quot;, &quot;k&quot;, &quot;l&quot;, &quot;m&quot;,
+     &quot;n&quot;, &quot;p&quot;, &quot;q&quot;, &quot;r&quot;, &quot;s&quot;, &quot;t&quot;, &quot;v&quot;, &quot;w&quot;, &quot;x&quot;, &quot;y&quot;, &quot;z&quot;:
+    print(&quot;\(someCharacter) is a consonant&quot;)
+default:
+    print(&quot;\(someCharacter) is not a vowel or a consonant&quot;)
+}
+// Prints &quot;e is a vowel&quot;
+</code></pre><p>还可以在复合情况使用值绑定：</p>
+<pre><code>let stillAnotherPoint = (9, 0)
+switch stillAnotherPoint {
+case (let distance, 0), (0, let distance):
+    print(&quot;On an axis, \(distance) from the origin&quot;)
+default:
+    print(&quot;No on an axis&quot;)
+}
+</code></pre><h4 id="控制转换语句-Control-Transfer-Statements"><a href="#控制转换语句-Control-Transfer-Statements" class="headerlink" title="控制转换语句 (Control Transfer Statements)"></a>控制转换语句 (Control Transfer Statements)</h4><p>控制转换语句可以改变代码的执行顺序。Swift有5个控制转换语句：</p>
+<ul>
+<li>continue</li>
+<li>break</li>
+<li>fallthrough</li>
+<li>return</li>
+<li>throw</li>
+</ul>
+<h5 id="Continue"><a href="#Continue" class="headerlink" title="Continue"></a>Continue</h5><p><code>continue</code>告诉循环停止正在做的事，然后继续执行下一个遍历：</p>
+<pre><code>let puzzleInput = &quot;great minds think alike&quot;
+var puzzleOutput = &quot;&quot;
+let charactersToRemove: [Character] = [&quot;a&quot;, &quot;e&quot;, &quot;i&quot;, &quot;o&quot;, &quot;u&quot;, &quot; &quot;]
+for character in puzzleInput.characters {
+    if charactersToRemove.contains(character) {
+        continue
+    } else {
+        puzzleOutput.append(character)
+    }
+}
+print(puzzleOutput)
+// Prints &quot;grtmndsthnklk&quot;
+</code></pre><h5 id="Break"><a href="#Break" class="headerlink" title="Break"></a>Break</h5><p><code>break</code>可以让整个控制流立即停止。</p>
+<h6 id="在循环语句中使用Break-Break-in-Loop-Statement"><a href="#在循环语句中使用Break-Break-in-Loop-Statement" class="headerlink" title="在循环语句中使用Break (Break in Loop Statement)"></a>在循环语句中使用Break (Break in Loop Statement)</h6><p>当在循环语句中使用时，<code>break</code>停止整个循环，然后跳到循环下面的代码。</p>
+<h6 id="在Switch语句中使用Break-Break-in-Switch-Statement"><a href="#在Switch语句中使用Break-Break-in-Switch-Statement" class="headerlink" title="在Switch语句中使用Break (Break in Switch Statement)"></a>在Switch语句中使用Break (Break in Switch Statement)</h6><p>当在Switch语句中使用时，<code>break</code>停止整个Switch语句，然后跳到Switch语句下面的代码。</p>
+<h5 id="Fallthrough"><a href="#Fallthrough" class="headerlink" title="Fallthrough"></a>Fallthrough</h5><p>只要第一个匹配的情况执行完成，整个Swift的Switch语句就会停止。在C语言中，需要在每一个case最后面加上<code>break</code>来防止跳到下一个case。如果我们需要C语言风格的往下跳到下一个case的功能，可以使用<code>fallthrough</code>。</p>
+<pre><code>let integerToDescribe = 5
+var description = &quot;The number \(integerToDescribe) is&quot;
+switch integerToDescribe {
+case 2, 3, 5, 7, 11, 13, 17, 19:
+    description += &quot;a prime number, and also&quot;
+    fallthrough
+default:
+    description += &quot;an integer.&quot;
+}
+print(description)
+// Prints &quot;The number 5 is a prime number, and also an integer.&quot;
+</code></pre><p><strong>注意：</strong> <code>fallthrough</code>关键字不会检查下一个case的条件是否满足，而是直接执行下一个case的代码。</p>
+<h5 id="有标签的语句-Labeled-Statements"><a href="#有标签的语句-Labeled-Statements" class="headerlink" title="有标签的语句 (Labeled Statements)"></a>有标签的语句 (Labeled Statements)</h5><p>在Swift中，我们可以把循环和条件语句嵌套到其他循环和条件语句里面，来实现更复杂的控制流结构。当然，循环和条件语句可以各自使用<code>break</code>来提前终止自己的执行。所以，明确的说明想要终止哪一个循环或者条件语句非常重要。</p>
+<p>为了达到这个目的，我们可以给循环和条件语句定义一个标签：</p>
+<pre><code>label name: while condition {
+    statements
+}
+</code></pre><h4 id="提前退出-Early-Exit"><a href="#提前退出-Early-Exit" class="headerlink" title="提前退出 (Early Exit)"></a>提前退出 (Early Exit)</h4><p><code>guard</code>语句就像<code>if</code>语句一样，根据一个布尔值来决定是否执行里面的代码。我们可以使用<code>guard</code>语句来要求一个条件必须是<code>true</code>，然后<code>guard</code>语句后面的代码才能被执行。如果条件是<code>false</code>，那么会执行<code>else</code>分句的代码。</p>
+<pre><code>func greet(person: [String: String]) {
+    guard let name = person[&quot;name&quot;] else {
+        return
+    }
+
+    print(&quot;Hello \(name)!&quot;)
+
+    guard let location = person[&quot;location&quot;] else {
+        print(&quot;I hope the weather is nice near you.&quot;)
+        return
+    }
+
+    print(&quot;I hope the weather is nice in \(location).&quot;)
+}
+
+greet(person: [&quot;name&quot;: &quot;John&quot;])
+// Prints &quot;Hello John!&quot;
+// Prints &quot;I hope the weather is nice near you.&quot;
+greet(person: [&quot;name&quot;: &quot;Jane&quot;, &quot;location&quot;: &quot;Cupertino&quot;])
+// Prints &quot;Hello Jane!&quot;
+// Prints &quot;I hope the weather is nice in Cupertino.&quot;
+</code></pre><p>使用<code>guard</code>语句可以提高代码的可读性，可以使我们避免包装很多个<code>else</code>代码块。</p>
+<h4 id="检查API的可用性-Checking-API-Availability"><a href="#检查API的可用性-Checking-API-Availability" class="headerlink" title="检查API的可用性 (Checking API Availability)"></a>检查API的可用性 (Checking API Availability)</h4><pre><code>if #available(iOS 10, macOS 10.12, *) {
+    // Use iOS 10 APIs on iOS, and use macOS 10.12 APIs on macOS
+} else {
+    // Fall back to earlier iOS and macOS APIs
+}
+</code></pre><p><code>*</code>不能省略，是用来指定其他任何平台。</p>
+<h4 id="完"><a href="#完" class="headerlink" title="完"></a>完</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
+        </div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/11/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/14/mac上Hexo+Github 搭建属于自己的博客（上）/" rel="prev" title="Mac上Hexo+Github 搭建属于自己的博客（上）">
+                Mac上Hexo+Github 搭建属于自己的博客（上） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="绍清">
+            
+              <p class="site-author-name" itemprop="name">绍清</p>
+              <p class="site-description motion-element" itemprop="description">苟有恒,何必三更眠五更起,最无益,莫过一日曝十日寒</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:897034809@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/3154019080" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-globe"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/aloow" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#For-in循环-For-in-Loop"><span class="nav-number">1.</span> <span class="nav-text">For-in循环 (For-in Loop)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#While循环-While-Loops"><span class="nav-number">2.</span> <span class="nav-text">While循环 (While Loops)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#While"><span class="nav-number">2.1.</span> <span class="nav-text">While</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Repeat-While"><span class="nav-number">2.2.</span> <span class="nav-text">Repeat-While</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件语句"><span class="nav-number">3.</span> <span class="nav-text">条件语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#If"><span class="nav-number">3.1.</span> <span class="nav-text">If</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Switch"><span class="nav-number">3.2.</span> <span class="nav-text">Switch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#间隔匹配-Interval-Matching"><span class="nav-number">3.3.</span> <span class="nav-text">间隔匹配 (Interval Matching)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多元组-Tuples"><span class="nav-number">4.</span> <span class="nav-text">多元组 (Tuples)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#值绑定-Value-Bindings"><span class="nav-number">4.1.</span> <span class="nav-text">值绑定 (Value Bindings)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Where"><span class="nav-number">4.2.</span> <span class="nav-text">Where</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复合情况-Compound-Cases"><span class="nav-number">4.3.</span> <span class="nav-text">复合情况 (Compound Cases)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制转换语句-Control-Transfer-Statements"><span class="nav-number">5.</span> <span class="nav-text">控制转换语句 (Control Transfer Statements)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Continue"><span class="nav-number">5.1.</span> <span class="nav-text">Continue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Break"><span class="nav-number">5.2.</span> <span class="nav-text">Break</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#在循环语句中使用Break-Break-in-Loop-Statement"><span class="nav-number">5.2.1.</span> <span class="nav-text">在循环语句中使用Break (Break in Loop Statement)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#在Switch语句中使用Break-Break-in-Switch-Statement"><span class="nav-number">5.2.2.</span> <span class="nav-text">在Switch语句中使用Break (Break in Switch Statement)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Fallthrough"><span class="nav-number">5.3.</span> <span class="nav-text">Fallthrough</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#有标签的语句-Labeled-Statements"><span class="nav-number">5.4.</span> <span class="nav-text">有标签的语句 (Labeled Statements)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提前退出-Early-Exit"><span class="nav-number">6.</span> <span class="nav-text">提前退出 (Early Exit)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检查API的可用性-Checking-API-Availability"><span class="nav-number">7.</span> <span class="nav-text">检查API的可用性 (Checking API Availability)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完"><span class="nav-number">8.</span> <span class="nav-text">完</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">绍清</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共12.5k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Umqe2M2fk7veTe87SHVGBoBK-gzGzoHsz", "lnkdcTcffrfDRCLUrvMyJskq");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
